@@ -8,8 +8,8 @@ import static common.Values.BASE_URL;
 
 public class Base {
     public void createDepartment(String word) {
-        System.out.println("Департамент " + word);
+        System.out.println("Department " + word);
         open(BASE_URL);
-        $(By.name("q")).setValue("Департамент " + word).pressEnter();
+        $(By.name("q")).setValue("Department " + word).pressEnter();
     }
 }
