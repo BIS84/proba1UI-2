@@ -1,6 +1,6 @@
-package cloveri360.api.tests.features;
+package cloveri360.api.tests;
 
-import cloveri360.api.tests.base.BaseTest; // Это класс от которого наследуемся
+import cloveri360.api.tests.BaseTest;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.response.ValidatableResponse;
 import org.hamcrest.CoreMatchers;
@@ -8,7 +8,9 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class GetTests extends BaseTest {
+class GetTests extends BaseTest {
+
+
 
     @Test
     void getAccountTest() {
