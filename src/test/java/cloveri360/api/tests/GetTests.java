@@ -22,7 +22,7 @@ class GetTests extends BaseTest {
                 .body("success", CoreMatchers.is(true))
                 .body("data.url", CoreMatchers.equalTo(username))
                 .when()
-                .get("account/" + username)// ("account/{username}", username) так лучше, работает быстрее, чем конкатинация (сложение) строк
+                .get("account/" + username)// ("/account/{username}", username) так лучше, работает быстрее, чем конкатинация (сложение) строк
                 .prettyPeek()
                 .then()
                 .statusCode(200);
