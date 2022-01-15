@@ -18,7 +18,7 @@
         <aspectj.version>1.9.4</aspectj.version>
 
         <!--plugin versions-->
-        <maven-surefire.version>2.22.2</maven-surefire.version>
+        <maven-surefire.version>2.22.1</maven-surefire.version>
     </properties>
 
     <dependencies>
