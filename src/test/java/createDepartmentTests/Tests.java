@@ -49,7 +49,7 @@ public class Tests extends Base {
                 createDepartment(word);
             }
 
-/*            @Nested
+            @Nested
             @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
             class NegativeTests {
                 @Order(1)
@@ -71,7 +71,7 @@ public class Tests extends Base {
                     open(BASE_URL);
                     $(By.name("q")).setValue(word).pressEnter();
                 }
-            }*/
+            }
         }
     }
 }
