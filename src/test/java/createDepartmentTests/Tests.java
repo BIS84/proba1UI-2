@@ -1,7 +1,9 @@
 package createDepartmentTests;
 
-import Base.Base;
+import BaseTests.BaseTests;
+import com.codeborne.selenide.junit5.ScreenShooterExtension;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.By;
@@ -9,7 +11,12 @@ import org.openqa.selenium.By;
 import static com.codeborne.selenide.Selenide.*;
 import static common.Values.BASE_URL;
 
-public class Tests extends Base {
+import static com.codeborne.selenide.Selenide.screenshot;
+
+public class Tests extends BaseTests {
+
+    @RegisterExtension
+    static ScreenShooterExtension screenshotEmAll = new ScreenShooterExtension(true).to("target/screenshots");
 
     @Nested
     @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -21,6 +28,7 @@ public class Tests extends Base {
         @ValueSource(strings = {"2.1", "3.1", "4.1", "5.1"})
         void createDepartmentsLevels_2_5(String word) {
             createDepartment(word);
+            String pngFileName = screenshot("my_file_name");
         }
 
         @Order(2)
