@@ -19,7 +19,7 @@ public class Tests extends BaseTests {
     static ScreenShooterExtension screenshotEmAll = new ScreenShooterExtension(true).to("target/screenshots");
 
     @Nested
-    @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+//    @TestMethodOrder(MethodOrderer.OrderAnnotation.class) // Если в классе нужны скриншоты не по общим правилам. Иначе см. BaseTests @BeforeALL static void setupAllureReports()
     public class CreateDepartmentsTests {
 
         @Order(1)
@@ -28,7 +28,7 @@ public class Tests extends BaseTests {
         @ValueSource(strings = {"2.1", "3.1", "4.1", "5.1"})
         void createDepartmentsLevels_2_5(String word) {
             createDepartment(word);
-            String pngFileName = screenshot("my_file_name");
+    //        String pngFileName = screenshot("my_file_name_" + word); // Если хотим сделать скриншот на каком-то определенном шаге
         }
 
         @Order(2)

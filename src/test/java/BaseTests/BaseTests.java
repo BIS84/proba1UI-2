@@ -1,6 +1,7 @@
 package BaseTests;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.By;
@@ -22,6 +23,7 @@ public class BaseTests {
         );
     }
 
+    @Step
     public void createDepartment(String word) {
         System.out.println("Department " + word);
         open(BASE_URL);
