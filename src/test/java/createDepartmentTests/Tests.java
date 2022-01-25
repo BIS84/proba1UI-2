@@ -37,7 +37,7 @@ public class Tests extends BaseTests {
         @ValueSource(strings = {"2.1", "3.1", "4.1", "5.1"})
         void createDepartmentsLevels_2_5(String word) throws IOException {
             createDepartment(word);
-            $(By.name("q")).should(Condition.attribute("3.1"));
+            $(By.name("q")).should(Condition.value("Department 3.1"));
 
             //        String pngFileName = screenshot("my_file_name_" + word); // Если хотим сделать скриншот на каком-то определенном шаге
         }
