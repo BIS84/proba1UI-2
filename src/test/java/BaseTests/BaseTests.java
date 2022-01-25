@@ -15,7 +15,7 @@ import static common.Values.BASE_URL;
 
 public class BaseTests {
 
-    @BeforeAll
+/*    @BeforeAll
     static void setupAllureReports() {
 //        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
@@ -24,13 +24,12 @@ public class BaseTests {
                 .screenshots(true)
                 .savePageSource(true)
         );
-    }
+    }*/
 
     @Step("Создаем подразделение {word}")
     public void createDepartment(String word) throws IOException {
         System.out.println("Department " + word);
         open(BASE_URL);
         $(By.name("q")).setValue("Department " + word).pressEnter();
-        getBytes("1643091514646.0.png");
     }
 }

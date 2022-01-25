@@ -1,14 +1,20 @@
 package createDepartmentTests;
 
 import BaseTests.BaseTests;
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.junit5.ScreenShooterExtension;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
 
 import java.io.IOException;
+import java.util.Base64;
 
 import static com.codeborne.selenide.Selenide.*;
 import static common.Values.BASE_URL;
@@ -17,8 +23,8 @@ import static com.codeborne.selenide.Selenide.screenshot;
 
 public class Tests extends BaseTests {
 
-    @RegisterExtension
-    static ScreenShooterExtension screenshotEmAll = new ScreenShooterExtension(true).to("target/screenshots");
+//    @RegisterExtension
+//    static ScreenShooterExtension screenshotEmAll = new ScreenShooterExtension(true).to("target/screenshots");
 
     @Nested
 //    @TestMethodOrder(MethodOrderer.OrderAnnotation.class) // Если в классе нужны скриншоты не по общим правилам. Иначе см. BaseTests @BeforeALL static void setupAllureReports()
@@ -30,7 +36,9 @@ public class Tests extends BaseTests {
         @ValueSource(strings = {"2.1", "3.1", "4.1", "5.1"})
         void createDepartmentsLevels_2_5(String word) throws IOException {
             createDepartment(word);
-    //        String pngFileName = screenshot("my_file_name_" + word); // Если хотим сделать скриншот на каком-то определенном шаге
+            $(By.name("q")).shouldHave(Condition.text("3.1"));
+
+            //        String pngFileName = screenshot("my_file_name_" + word); // Если хотим сделать скриншот на каком-то определенном шаге
         }
 
         @Order(2)
