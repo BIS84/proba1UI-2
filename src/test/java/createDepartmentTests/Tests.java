@@ -8,6 +8,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.By;
 
+import java.io.IOException;
+
 import static com.codeborne.selenide.Selenide.*;
 import static common.Values.BASE_URL;
 
@@ -26,7 +28,7 @@ public class Tests extends BaseTests {
         @DisplayName("Create Departments 2.1 - 5.1")
         @ParameterizedTest
         @ValueSource(strings = {"2.1", "3.1", "4.1", "5.1"})
-        void createDepartmentsLevels_2_5(String word) {
+        void createDepartmentsLevels_2_5(String word) throws IOException {
             createDepartment(word);
     //        String pngFileName = screenshot("my_file_name_" + word); // Если хотим сделать скриншот на каком-то определенном шаге
         }
@@ -39,21 +41,21 @@ public class Tests extends BaseTests {
             @DisplayName("Create Departments Level 2")
             @ParameterizedTest
             @ValueSource(strings = {"2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8", "2.9", "2.10"})
-            void createDepartmentsLevel_2(String word) {
+            void createDepartmentsLevel_2(String word) throws IOException {
                 createDepartment(word);
             }
 
             @DisplayName("Create Departments Level 5")
             @ParameterizedTest
             @ValueSource(strings = {"5.2", "5.3", "5.4", "5.5", "5.6", "5.7", "5.8", "5.9", "5.10"})
-            void createDepartmentsLevel_5(String word) {
+            void createDepartmentsLevel_5(String word) throws IOException {
                 createDepartment(word);
             }
 
             @DisplayName("Create Departments Level 3")
             @ParameterizedTest
             @ValueSource(strings = {"3.2", "3.3", "3.4", "3.5", "3.6", "3.7", "3.8", "3.9", "3.10"})
-            void createDepartmentsLevel_3(String word) {
+            void createDepartmentsLevel_3(String word) throws IOException {
                 createDepartment(word);
             }
 
