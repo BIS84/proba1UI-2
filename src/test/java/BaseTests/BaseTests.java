@@ -30,12 +30,12 @@ public class BaseTests {
         );
     }*/
 
-    public static void setupBrowser() {
+/*    public static void setupBrowser() {
 
-        System.setProperty("selenide.browser", "opera");
-    }
+        System.setProperty("selenide.browser", "firefox"); // "chrome", "firefox", "ie", "htmlunit", "phantomjs", "opera"
+    }*/
 
-    @Step("Создаем подразделение {word}")
+//    @Step("Создаем подразделение {word}")
     public void createDepartment(String word) throws IOException {
         System.out.println("Department " + word);
         open(BASE_URL);
