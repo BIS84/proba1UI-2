@@ -19,8 +19,8 @@ import static common.Values.BASE_URL;
 
 public class BaseTests {
 
-/*    @BeforeAll
-    static void setupAllureReports() {
+    @BeforeAll
+/*    static void setupAllureReports() {
 //        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
         // либо для тонкой настройки:
@@ -30,10 +30,9 @@ public class BaseTests {
         );
     }*/
 
-    @BeforeAll
     public static void setupBrowser() {
 
-        System.setProperty("selenide.browser", "firefox");
+        System.setProperty("selenide.browser", "opera");
     }
 
     @Step("Создаем подразделение {word}")
