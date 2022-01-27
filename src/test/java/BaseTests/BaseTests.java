@@ -19,7 +19,7 @@ import static common.Values.BASE_URL;
 
 public class BaseTests {
 
-    @BeforeAll
+//    @BeforeAll
 /*    static void setupAllureReports() {
 //        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
