@@ -32,7 +32,7 @@ public class PostTests extends BaseTest {
 
         imageDeleteHash = given()
                 .header("Authorization", token)
-                .body(new File(xpathImageHD + "bmp")) //
+                .body(new File(xpathImageHD + "bmp")) ////
                 .expect()
                 .statusCode(201)
                 .when()
