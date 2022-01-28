@@ -15,7 +15,7 @@ public class DeleteImageTests extends BaseTest {
                 .header("Authorization", token)
                 .body(new File(xpathImageHD + "png"))
                 .when()
-                .post("/image")
+                .post("image")
                 .prettyPeek()
                 .jsonPath()
                 .get("data.deletehash");
@@ -26,7 +26,7 @@ public class DeleteImageTests extends BaseTest {
         given()
                 .header("Authorization", token)
                 .when()
-                .delete("/image/{imageHash}", imageDeleteHash)
+                .delete("image/{imageHash}", imageDeleteHash)
                 .prettyPeek()
                 .then()
                 .statusCode(200);
