@@ -3,6 +3,8 @@ package cloveri360.api.tests;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.File;
 
@@ -11,12 +13,13 @@ import static io.restassured.RestAssured.when;
 
 public class PostTests extends BaseTest {
 
-    @Test
-    void createDepartmentLevel_2Test() {
+    @ParameterizedTest
+    @ValueSource(strings = {"png", "jpg"})
+    void createDepartmentLevel_2Test(String word) {
 
         imageDeleteHash = given()
                 .header("Authorization", token)
-                .body(new File(xpathImageHD + "png")) // в теле передаем файл. По сети передается в виде потока
+                .body(new File(xpathImageHD + word)) // в теле передаем файл. По сети передается в виде потока
                 .expect()
                 .statusCode(200)
                 .when()
