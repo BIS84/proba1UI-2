@@ -50,16 +50,17 @@
             <scope>test</scope>
         </dependency>
 
-
-
-
-
-        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-selenide -->
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit5 -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-selenide</artifactId>
+            <artifactId>allure-junit5</artifactId>
             <version>${allure-junit5.version}</version>
+            <scope>test</scope>
         </dependency>
+
+
+
+
 
     </dependencies>
 
