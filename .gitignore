@@ -7,3 +7,4 @@ out/
 .allure/
 build/
 target/
+allure-results/
