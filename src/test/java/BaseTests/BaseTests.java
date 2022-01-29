@@ -9,7 +9,7 @@ import static common.Values.BASE_URL;
 
 public class BaseTests {
 
-    /*@Step("Открыть ЛК")
+    @Step("Открыть ЛК")
     public void openPage() {
         open(BASE_URL);
     }
@@ -52,6 +52,6 @@ public class BaseTests {
     @Step("Проверить неверное значение поля 'input'")
     public void shouldInputFailed() {
         $(By.xpath("//*[@data-id=" + 3 + "]/div/div/div/input")).should(Condition.value("Управление 2"));
-    }*/
+    }
 }
 
