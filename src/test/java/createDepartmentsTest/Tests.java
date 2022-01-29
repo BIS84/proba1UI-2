@@ -37,7 +37,7 @@ public class Tests extends BaseTests {
 
     }
 
-    @DisplayName("Create Departments Level 1")
+    @DisplayName("Create Departments Level 5")
     @Test
     void createDepartmentsLevel_5() {
         open(BASE_URL);
@@ -48,7 +48,7 @@ public class Tests extends BaseTests {
 
     }
 
-    @DisplayName("Create Departments Level 1")
+    @DisplayName("Create Departments Level 2")
     @Test
     void createDepartmentsLevel_2() {
         open(BASE_URL);
@@ -59,17 +59,18 @@ public class Tests extends BaseTests {
 
     }
 
-        @Test
-        void createDepartmentLevel_1() {
-            open(BASE_URL);
-            $(By.xpath("//*[@data-id=" + 0 + "]/div/button")).click();
-            $(By.linkText("элемент структуры")).click();
-            $(By.xpath("//*[@data-id=" + 1 + "]/div/button")).click();
-            $(By.linkText("элемент структуры")).click();
-            $(By.xpath("//*[@data-id=" + 2 + "]/div/button")).click();
-            $(By.linkText("элемент структуры")).click();
-            $(By.xpath("//*[@data-id=" + 3 + "]/div/div/div/input"))
-                    .should(Condition.value("Управление 2"));
+    @DisplayName("The Test Should Fail ")
+    @Test
+    void createDepartmentLevel_1() {
+        open(BASE_URL);
+        $(By.xpath("//*[@data-id=" + 0 + "]/div/button")).click();
+        $(By.linkText("элемент структуры")).click();
+        $(By.xpath("//*[@data-id=" + 1 + "]/div/button")).click();
+        $(By.linkText("элемент структуры")).click();
+        $(By.xpath("//*[@data-id=" + 2 + "]/div/button")).click();
+        $(By.linkText("элемент структуры")).click();
+        $(By.xpath("//*[@data-id=" + 3 + "]/div/div/div/input"))
+                .should(Condition.value("Управление 2"));
         }
 }
 
