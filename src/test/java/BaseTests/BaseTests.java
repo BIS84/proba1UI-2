@@ -17,7 +17,7 @@ public class BaseTests {
 
     @Step("Изменить размер")
     public void changeZoom() {
-        Selenide.zoom(0.5);
+        Selenide.zoom(1);
     }
 
 //    @Step("Создать департамент")

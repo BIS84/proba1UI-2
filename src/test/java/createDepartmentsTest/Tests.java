@@ -2,15 +2,20 @@ package createDepartmentsTest;
 
 import BaseTests.BaseTests;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.junit5.ScreenShooterExtension;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.*;
 import static common.Values.BASE_URL;
 
 public class Tests extends BaseTests {
+
+    @RegisterExtension
+    static ScreenShooterExtension screenshotEmAll = new ScreenShooterExtension(true).to("target/allure-results/screenshots");
 
     @DisplayName("Create Departments Levels 1 - 5")
     @Test
@@ -64,7 +69,6 @@ public class Tests extends BaseTests {
         createDepartmentLevel_N("1");
         createDepartmentLevel_N("6");
         createDepartmentLevel_N("11");
-
         wait_5_sec();
 //        shouldInput();
         shouldInputFailed();
