@@ -1,6 +1,7 @@
 package BaseTests;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
@@ -12,6 +13,11 @@ public class BaseTests {
     @Step("Открыть ЛК")
     public void openPage() {
         open(BASE_URL);
+    }
+
+    @Step("Изменить размер")
+    public void changeZoom() {
+        Selenide.zoom(0.5);
     }
 
 //    @Step("Создать департамент")

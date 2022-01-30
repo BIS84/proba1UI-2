@@ -16,6 +16,7 @@ public class Tests extends BaseTests {
     @Test
     void createDepartmentsLevels_1_5() {
         openPage();
+        changeZoom();
         createDepartmentLevels_1_5();
         wait_5_sec();
         shouldInput();
@@ -25,6 +26,7 @@ public class Tests extends BaseTests {
     @Test
     void createDepartmentsLevel_1() {
         openPage();
+        changeZoom();
         createDepartmentLevels_1_5();
         createDepartmentLevel_N("0");
         wait_5_sec();
@@ -35,6 +37,7 @@ public class Tests extends BaseTests {
     @Test
     void createDepartmentsLevel_5() {
         openPage();
+        changeZoom();
         createDepartmentLevels_1_5();
         createDepartmentLevel_N("4");
         wait_5_sec();
@@ -45,6 +48,7 @@ public class Tests extends BaseTests {
     @Test
     void createDepartmentsLevel_2() {
         openPage();
+        changeZoom();
         createDepartmentLevels_1_5();
         createDepartmentLevel_N("1");
         wait_5_sec();
@@ -55,8 +59,14 @@ public class Tests extends BaseTests {
     @Test
     void createDepartmentLevel_1() {
         openPage();
+        changeZoom();
         createDepartmentLevels_1_5();
+        createDepartmentLevel_N("1");
+        createDepartmentLevel_N("6");
+        createDepartmentLevel_N("11");
+
         wait_5_sec();
+//        shouldInput();
         shouldInputFailed();
         }
 }
