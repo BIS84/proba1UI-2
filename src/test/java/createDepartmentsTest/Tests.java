@@ -17,7 +17,7 @@ public class Tests extends BaseTests {
         openPage();
         changeZoom();
         createDepartmentLevels_1_5();
-        wait_2_sec();
+//        wait_2_sec();
         shouldInput();
     }
 
@@ -28,7 +28,7 @@ public class Tests extends BaseTests {
         changeZoom();
         createDepartmentLevels_1_5();
         createDepartmentLevel_N("0");
-        wait_2_sec();
+//        wait_2_sec();
         shouldInput();
     }
 
@@ -39,7 +39,7 @@ public class Tests extends BaseTests {
         changeZoom();
         createDepartmentLevels_1_5();
         createDepartmentLevel_N("4");
-        wait_2_sec();
+//        wait_2_sec();
         shouldInput();
     }
 
@@ -50,7 +50,7 @@ public class Tests extends BaseTests {
         changeZoom();
         createDepartmentLevels_1_5();
         createDepartmentLevel_N("1");
-        wait_2_sec();
+//        wait_2_sec();
         shouldInput();
     }
 
@@ -63,7 +63,7 @@ public class Tests extends BaseTests {
         createDepartmentLevel_N("1");
         createDepartmentLevel_N("6");
         createDepartmentLevel_N("11");
-        wait_2_sec();
+//        wait_2_sec();
 //        shouldInput();
         shouldInputFailed();
         }
