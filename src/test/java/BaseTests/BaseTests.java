@@ -45,9 +45,9 @@ public class BaseTests {
         createDepartment(level);
     }
 
-    @Step("Подождать 5 сек")
-    public void wait_5_sec() {
-        sleep(5000);
+    @Step("Подождать 2 сек")
+    public void wait_2_sec() {
+        sleep(2000);
     }
 
     @Step("Проверить значение поля 'input'")
