@@ -56,7 +56,7 @@ public class Tests extends BaseTests {
         shouldInput();
     }
 
-    @Description("The Test Should Fail ")
+    @Description("Этот тест должен упасть")
     @Test
     void createDepartmentLevel_1() {
         openPage();
