@@ -70,6 +70,7 @@ public class Tests extends BaseTests {
         shouldInputFailed();
     }
 
+    @Description("Проверка авторизации")
     @Test
     void authorization() {
         createDepartmentLevels_1_5();
