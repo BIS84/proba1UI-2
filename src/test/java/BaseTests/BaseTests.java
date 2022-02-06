@@ -2,16 +2,14 @@ package BaseTests;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Step;
-import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.*;
-import static common.Values.*;
+import static common.Values.BASE_URL;
+import static common.Values.STRUCTURE_PAGE;
 
 public class BaseTests {
 
