@@ -19,7 +19,7 @@ public class Tests extends BaseTests {
     @Description("Create Departments Levels 1 - 5")
     @Test
     void createDepartmentsLevels_1_5() {
-        $(By.linkText("Организационная структура")).click();
+
         createDepartmentLevels_1_5();
         wait_2_sec();
         shouldInput();
@@ -28,7 +28,7 @@ public class Tests extends BaseTests {
     @Description("Create Departments Level 1")
     @Test
     void createDepartmentsLevel_1() {
-        $(By.linkText("Организационная структура")).click();
+
         createDepartmentLevels_1_5();
         createDepartmentLevel_N("0");
         wait_2_sec();
@@ -38,7 +38,7 @@ public class Tests extends BaseTests {
     @Description("Create Departments Level 5")
     @Test
     void createDepartmentsLevel_5() {
-        $(By.linkText("Организационная структура")).click();
+
         createDepartmentLevels_1_5();
         createDepartmentLevel_N("4");
         wait_2_sec();
@@ -48,7 +48,8 @@ public class Tests extends BaseTests {
     @Description("Create Departments Level 2")
     @Test
     void createDepartmentsLevel_2() {
-        $(By.linkText("Организационная структура")).click();
+
+
         createDepartmentLevels_1_5();
         createDepartmentLevel_N("1");
         wait_2_sec();
@@ -58,12 +59,8 @@ public class Tests extends BaseTests {
     @Description("Этот тест должен упасть")
     @Test
     void createDepartmentLevel_1() {
-        open(BASE_URL);
-        $(By.xpath("/html/body/div/div/div/div[1]/form/div[1]/input")).setValue("demo@cloveri.com");
-        $(By.xpath("/html/body/div/div/div/div[1]/form/div[3]/input")).setValue("jAamqBf2uPoS");
-        $(By.xpath("/html/body/div/div/div/div[1]/form/div[5]/button")).click();
-        $(By.linkText("Организационная структура")).click();
-        changeZoom();
+
+
         createDepartmentLevels_1_5();
         createDepartmentLevel_N("1");
         createDepartmentLevel_N("6");
@@ -75,7 +72,7 @@ public class Tests extends BaseTests {
 
     @Test
     void authorization() {
-        $(By.linkText("Организационная структура")).click();
+
         createDepartmentLevels_1_5();
         createDepartmentLevel_N("1");
         createDepartmentLevel_N("6");

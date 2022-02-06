@@ -19,7 +19,7 @@ public class BaseTests {
         $(By.xpath("/html/body/div/div/div/div[1]/form/div[1]/input")).setValue("demo@cloveri.com");
         $(By.xpath("/html/body/div/div/div/div[1]/form/div[3]/input")).setValue("jAamqBf2uPoS");
         $(By.xpath("/html/body/div/div/div/div[1]/form/div[5]/button")).click();
-
+        $(By.linkText("Организационная структура")).click();
         changeZoom();
     }
 
