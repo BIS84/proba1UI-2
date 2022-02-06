@@ -1,6 +1,7 @@
 package createDepartmentsTest;
 
 import BaseTests.BaseTests;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.junit5.ScreenShooterExtension;
 import io.qameta.allure.Description;
 import org.junit.jupiter.api.Test;
@@ -8,8 +9,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.*;
-import static common.Values.BASE_URL;
-import static common.Values.STRUCTURE_PAGE;
+import static common.Values.*;
 
 public class Tests extends BaseTests {
 
@@ -73,8 +73,8 @@ public class Tests extends BaseTests {
     @Description("Проверка авторизации")
     @Test
     void authorization() {
-        createDepartmentLevels_1_5();
-        shouldInput();
+        $(By.linkText(ORGANIZATION_STRUCTURE_LINK_TEXT))
+                .should(Condition.text(ORGANIZATION_STRUCTURE_LINK_TEXT));
     }
 }
 
