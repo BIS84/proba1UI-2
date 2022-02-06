@@ -72,12 +72,7 @@ public class Tests extends BaseTests {
 
     @Test
     void authorization() {
-
         createDepartmentLevels_1_5();
-        createDepartmentLevel_N("1");
-        createDepartmentLevel_N("6");
-        createDepartmentLevel_N("11");
-        wait_2_sec();
         shouldInput();
     }
 }

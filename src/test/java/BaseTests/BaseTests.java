@@ -8,18 +8,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.*;
-import static common.Values.BASE_URL;
-import static common.Values.STRUCTURE_PAGE;
+import static common.Values.*;
 
 public class BaseTests {
 
     @BeforeEach
     public void login() {
         open(BASE_URL);
-        $(By.xpath("/html/body/div/div/div/div[1]/form/div[1]/input")).setValue("demo@cloveri.com");
-        $(By.xpath("/html/body/div/div/div/div[1]/form/div[3]/input")).setValue("jAamqBf2uPoS");
-        $(By.xpath("/html/body/div/div/div/div[1]/form/div[5]/button")).click();
-        $(By.linkText("Организационная структура")).click();
+        $(By.xpath(LOGIN_XPATH)).setValue(LOGIN);
+        $(By.xpath(PASSWORD_XPATH)).setValue(PASSWORD);
+        $(By.xpath(LOGIN_BUTTON)).click();
+        $(By.linkText(ORGANIZATION_STRUCTURE_LINK_TEXT)).click();
         changeZoom();
     }
 
@@ -34,9 +33,8 @@ public class BaseTests {
         Selenide.zoom(0.5);
     }
 
-//    @Step("Создать департамент")
     public void createDepartment(String number) {
-//        Selenide.zoom(100);
+
         $(By.xpath("//*[@data-id=" + number + "]/div/button")).click();
         $(By.linkText("элемент структуры")).click();
     }
