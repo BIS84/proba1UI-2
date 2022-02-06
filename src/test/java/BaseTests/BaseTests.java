@@ -3,20 +3,34 @@ package BaseTests;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.*;
-import static common.Values.BASE_URL;
+import static common.Values.*;
 
 public class BaseTests {
 
+    @BeforeEach
+    public void login() {
+        open(BASE_URL);
+        $(By.xpath("/html/body/div/div/div/div[1]/form/div[1]/input")).setValue("demo@cloveri.com");
+        $(By.xpath("/html/body/div/div/div/div[1]/form/div[3]/input")).setValue("jAamqBf2uPoS");
+        $(By.xpath("/html/body/div/div/div/div[1]/form/div[5]/button")).click();
+
+        changeZoom();
+    }
+
     @Step("Открыть ЛК")
     public void openPage() {
-        open(BASE_URL);
+
+        open(BASE_URL + STRUCTURE_PAGE);
     }
 
     @Step("Изменить размер")
-    public void changeZoom() {
+    public static void changeZoom() {
         Selenide.zoom(0.5);
     }
 
@@ -58,6 +72,11 @@ public class BaseTests {
     @Step("Проверить неверное значение поля 'input'")
     public void shouldInputFailed() {
         $(By.xpath("//*[@data-id=" + 3 + "]/div/div/div/input")).should(Condition.value("Управление 2"));
+    }
+
+    @AfterEach
+    public void close() {
+        closeWebDriver();
     }
 }
 
