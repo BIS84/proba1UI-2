@@ -14,7 +14,7 @@ import static common.Values.STRUCTURE_PAGE;
 public class Tests extends BaseTests {
 
     @RegisterExtension
-    static ScreenShooterExtension screenshotEmFailed = new ScreenShooterExtension(false).to("target/allure-results/screenshots");
+    static ScreenShooterExtension screenshotEmFailed = new ScreenShooterExtension(false).to("target/screenshots");
 
     @Description("Create Departments Levels 1 - 5")
     @Test
