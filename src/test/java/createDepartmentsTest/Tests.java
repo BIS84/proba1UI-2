@@ -2,6 +2,7 @@ package createDepartmentsTest;
 
 import BaseTests.BaseTests;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.junit5.ScreenShooterExtension;
 import io.qameta.allure.Description;
 import org.junit.Test;
 import org.openqa.selenium.By;
