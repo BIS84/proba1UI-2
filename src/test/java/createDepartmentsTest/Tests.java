@@ -2,19 +2,17 @@ package createDepartmentsTest;
 
 import BaseTests.BaseTests;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.junit5.ScreenShooterExtension;
 import io.qameta.allure.Description;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.RegisterExtension;
+import org.junit.Test;
 import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Selenide.*;
-import static common.Values.*;
+import static com.codeborne.selenide.Selenide.$;
+import static common.Values.ORGANIZATION_STRUCTURE_LINK_TEXT;
 
 public class Tests extends BaseTests {
 
-    @RegisterExtension
-    static ScreenShooterExtension screenshotEmFailed = new ScreenShooterExtension(false).to("target/screenshots");
+//    @RegisterExtension
+//    static ScreenShooterExtension screenshotEmFailed = new ScreenShooterExtension(false).to("target/screenshots");
 
     @Description("Create Departments Levels 1 - 5")
     @Test
