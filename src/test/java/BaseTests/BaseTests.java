@@ -73,7 +73,7 @@ public class BaseTests {
     }
 
     @AfterEach
-    public void teardown() {
+    public void tearDown() {
         closeWebDriver();
     }
 }
