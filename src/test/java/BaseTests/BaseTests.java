@@ -1,6 +1,7 @@
 package BaseTests;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.AfterEach;
@@ -14,6 +15,7 @@ public class BaseTests {
 
     @BeforeEach
     public void login() {
+
         open(BASE_URL);
         $(By.xpath(LOGIN_XPATH)).setValue(LOGIN);
         $(By.xpath(PASSWORD_XPATH)).setValue(PASSWORD);
