@@ -20,22 +20,18 @@ public class Tests extends BaseTests {
     static ScreenShooterExtension screenshotEmFailed = new ScreenShooterExtension(false).to("target/screenshots");
 
     @Description("Create Departments Levels 1 - 5")
-    @ParameterizedTest
-    @ValueSource(strings = {"chrome", "firefox", "opera", "edge"})
-    void createDepartmentsLevels_1_5(String  browser) {
+    @Test
+    void createDepartmentsLevels_1_5() {
 
-        Configuration.browser =  browser;
         createDepartmentLevels_1_5();
 //        wait_2_sec();
         shouldInput();
     }
 
     @Description("Create Departments Level 1")
-    @ParameterizedTest
-    @ValueSource(strings = {"chrome", "firefox", "opera", "edge"})
-    void createDepartmentsLevel_1(String  browser) {
+    @Test
+    void createDepartmentsLevel_1() {
 
-        Configuration.browser =  browser;
         createDepartmentLevels_1_5();
         createDepartmentLevel_N("0");
 //        wait_2_sec();
@@ -43,11 +39,9 @@ public class Tests extends BaseTests {
     }
 
     @Description("Create Departments Level 5")
-    @ParameterizedTest
-    @ValueSource(strings = {"chrome", "firefox", "opera", "edge"})
-    void createDepartmentsLevel_5(String  browser) {
+    @Test
+    void createDepartmentsLevel_5() {
 
-        Configuration.browser =  browser;
         createDepartmentLevels_1_5();
         createDepartmentLevel_N("4");
 //        wait_2_sec();
@@ -55,11 +49,9 @@ public class Tests extends BaseTests {
     }
 
     @Description("Create Departments Level 2")
-    @ParameterizedTest
-    @ValueSource(strings = {"chrome", "firefox", "opera", "edge"})
-    void createDepartmentsLevel_2(String  browser) {
+    @Test
+    void createDepartmentsLevel_2() {
 
-        Configuration.browser =  browser;
         createDepartmentLevels_1_5();
         createDepartmentLevel_N("1");
 //        wait_2_sec();
@@ -67,11 +59,9 @@ public class Tests extends BaseTests {
     }
 
     @Description("Этот тест должен упасть")
-    @ParameterizedTest
-    @ValueSource(strings = {"chrome", "firefox", "opera", "edge"})
-    void createDepartmentLevel_1(String  browser) {
+    @Test
+    void createDepartmentLevel_1() {
 
-        Configuration.browser =  browser;
         createDepartmentLevels_1_5();
         createDepartmentLevel_N("1");
         createDepartmentLevel_N("6");
@@ -82,10 +72,9 @@ public class Tests extends BaseTests {
     }
 
     @Description("Проверка авторизации")
-    @ParameterizedTest
-    @ValueSource(strings = {"chrome", "firefox", "opera", "edge"})
-    void authorization(String  browser) {
-        Configuration.browser =  browser;
+    @Test
+    void authorization() {
+
         $(By.linkText(ORGANIZATION_STRUCTURE_LINK_TEXT))
                 .should(Condition.text(ORGANIZATION_STRUCTURE_LINK_TEXT));
     }

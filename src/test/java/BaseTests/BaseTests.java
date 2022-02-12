@@ -15,7 +15,7 @@ public class BaseTests {
 
     @BeforeEach
     public void login() {
-
+        Configuration.browser =  "firefox";
         open(BASE_URL);
         $(By.xpath(LOGIN_XPATH)).setValue(LOGIN);
         $(By.xpath(PASSWORD_XPATH)).setValue(PASSWORD);
