@@ -58,7 +58,7 @@ public class Tests extends BaseTests {
         shouldInput();
     }
 
-    @Description("Этот тест должен упасть")
+/*    @Description("Этот тест должен упасть")
     @Test
     void createDepartmentLevel_1() {
 
@@ -69,7 +69,7 @@ public class Tests extends BaseTests {
 //        wait_2_sec();
 //        shouldInput();
         shouldInputFailed();
-    }
+    }*/
 
     @Description("Проверка авторизации")
     @Test
