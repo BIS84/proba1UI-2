@@ -1,14 +1,12 @@
 package cloveri;
 
-import io.qameta.allure.restassured.AllureRestAssured;
+
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URI;
 import java.util.Properties;
 
 import static io.restassured.RestAssured.given;
@@ -35,7 +33,6 @@ public class Tests {
 //                .header("Autorization", "demo@cloveri.com", "jAamqBf2uPoS")
                 .log()
                 .ifValidationFails()
-                .filter(new AllureRestAssured())
                 .when()
                 .get(elements)
                 .prettyPeek()
