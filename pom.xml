@@ -54,7 +54,12 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-rest-assured</artifactId>
+            <version>${allure-rest-assured.version}</version>
+            <scope>test</scope>
+        </dependency>
 
 
     </dependencies>
@@ -67,7 +72,7 @@
                 <version>2.10.0</version>
                 <configuration>
                     <reportVersion>2.13.0</reportVersion>
-                    <resultsDirectory>target/allure-results</resultsDirectory>
+                    <resultsDirectory>allure-results</resultsDirectory>
                 </configuration>
             </plugin>
 
