@@ -18,6 +18,7 @@
         <aspectj.version>1.9.4</aspectj.version>
         <lombok.version>1.18.22</lombok.version>
         <hamcrest.version>2.2</hamcrest.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!--plugin versions-->
         <maven-surefire.version>2.22.2</maven-surefire.version>
     </properties>
