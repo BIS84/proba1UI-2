@@ -2,10 +2,8 @@ package createDepartmentsTest;
 
 import BaseTests.BaseTests;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.junit5.ScreenShooterExtension;
 import io.qameta.allure.Description;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -20,18 +18,20 @@ public class Tests extends BaseTests {
     static ScreenShooterExtension screenshotEmFailed = new ScreenShooterExtension(false).to("target/screenshots");
 
     @Description("Create Departments Levels 1 - 5")
-    @Test
-    void createDepartmentsLevels_1_5() {
-
+    @ParameterizedTest
+    @ValueSource(strings = {"chrome", "firefox", "opera", "edge"})
+    void createDepartmentsLevels_1_5(String browser) {
+        login(browser);
         createDepartmentLevels_1_5();
 //        wait_2_sec();
         shouldInput();
     }
 
     @Description("Create Departments Level 1")
-    @Test
-    void createDepartmentsLevel_1() {
-
+    @ParameterizedTest
+    @ValueSource(strings = {"chrome", "firefox", "opera", "edge"})
+    void createDepartmentsLevel_1(String browser) {
+        login(browser);
         createDepartmentLevels_1_5();
         createDepartmentLevel_N("0");
 //        wait_2_sec();
@@ -39,9 +39,10 @@ public class Tests extends BaseTests {
     }
 
     @Description("Create Departments Level 5")
-    @Test
-    void createDepartmentsLevel_5() {
-
+    @ParameterizedTest
+    @ValueSource(strings = {"chrome", "firefox", "opera", "edge"})
+    void createDepartmentsLevel_5(String browser) {
+        login(browser);
         createDepartmentLevels_1_5();
         createDepartmentLevel_N("4");
 //        wait_2_sec();
@@ -49,9 +50,10 @@ public class Tests extends BaseTests {
     }
 
     @Description("Create Departments Level 2")
-    @Test
-    void createDepartmentsLevel_2() {
-
+    @ParameterizedTest
+    @ValueSource(strings = {"chrome", "firefox", "opera", "edge"})
+    void createDepartmentsLevel_2(String browser) {
+        login(browser);
         createDepartmentLevels_1_5();
         createDepartmentLevel_N("1");
 //        wait_2_sec();
@@ -59,9 +61,10 @@ public class Tests extends BaseTests {
     }
 
 /*    @Description("Этот тест должен упасть")
-    @Test
-    void createDepartmentLevel_1() {
-
+    @ParameterizedTest
+    @ValueSource(strings = {"chrome", "firefox", "opera", "edge"})@Test
+    void createDepartmentLevel_1(String browser) {
+        login(browser);
         createDepartmentLevels_1_5();
         createDepartmentLevel_N("1");
         createDepartmentLevel_N("6");
@@ -72,9 +75,10 @@ public class Tests extends BaseTests {
     }*/
 
     @Description("Проверка авторизации")
-    @Test
-    void authorization() {
-
+    @ParameterizedTest
+    @ValueSource(strings = {"chrome", "firefox", "opera", "edge"})
+    void authorization(String browser) {
+        login(browser);
         $(By.linkText(ORGANIZATION_STRUCTURE_LINK_TEXT))
                 .should(Condition.text(ORGANIZATION_STRUCTURE_LINK_TEXT));
     }

@@ -5,7 +5,6 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -13,9 +12,12 @@ import static common.Values.*;
 
 public class BaseTests {
 
-    @BeforeEach
-    public void login() {
-        Configuration.browser =  "firefox";
+
+//comment
+
+    @Step("Авторизация")
+    public void login(String browser) {
+        Configuration.browser =  browser;
         open(BASE_URL);
         $(By.xpath(LOGIN_XPATH)).setValue(LOGIN);
         $(By.xpath(PASSWORD_XPATH)).setValue(PASSWORD);
@@ -79,4 +81,3 @@ public class BaseTests {
         closeWebDriver();
     }
 }
-
