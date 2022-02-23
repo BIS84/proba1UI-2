@@ -19,7 +19,7 @@ public class Tests extends BaseTests {
 
     @Description("Create Departments Levels 1 - 5")
     @ParameterizedTest
-    @ValueSource(strings = {"chrome", "firefox", "opera", "edge"})
+    @ValueSource(strings = {"edge", "firefox", "opera", "chrome"})
     void createDepartmentsLevels_1_5(String browser) {
         login(browser);
         createDepartmentLevels_1_5();
