@@ -19,7 +19,7 @@ public class Tests extends BaseTests {
 
     @Description("Create Departments Levels 1 - 5")
     @ParameterizedTest
-    @ValueSource(strings = {"chrome", "firefox", "opera", "edge"})
+    @ValueSource(strings = {"chrome", "firefox"})
     void createDepartmentsLevels_1_5(String browser) {
         login(browser);
         createDepartmentLevels_1_5();
@@ -29,7 +29,7 @@ public class Tests extends BaseTests {
 
     @Description("Create Departments Level 1")
     @ParameterizedTest
-    @ValueSource(strings = {"chrome", "firefox", "opera", "edge"})
+    @ValueSource(strings = {"chrome", "firefox"})
     void createDepartmentsLevel_1(String browser) {
         login(browser);
         createDepartmentLevels_1_5();
@@ -40,7 +40,7 @@ public class Tests extends BaseTests {
 
     @Description("Create Departments Level 5")
     @ParameterizedTest
-    @ValueSource(strings = {"chrome", "firefox", "opera", "edge"})
+    @ValueSource(strings = {"chrome", "firefox"})
     void createDepartmentsLevel_5(String browser) {
         login(browser);
         createDepartmentLevels_1_5();
@@ -51,7 +51,7 @@ public class Tests extends BaseTests {
 
     @Description("Create Departments Level 2")
     @ParameterizedTest
-    @ValueSource(strings = {"chrome", "firefox", "opera", "edge"})
+    @ValueSource(strings = {"chrome", "firefox"})
     void createDepartmentsLevel_2(String browser) {
         login(browser);
         createDepartmentLevels_1_5();
@@ -62,7 +62,7 @@ public class Tests extends BaseTests {
 
 /*    @Description("Этот тест должен упасть")
     @ParameterizedTest
-    @ValueSource(strings = {"chrome", "firefox", "opera", "edge"})@Test
+    @ValueSource(strings = {"chrome", "firefox"})@Test
     void createDepartmentLevel_1(String browser) {
         login(browser);
         createDepartmentLevels_1_5();
@@ -76,7 +76,7 @@ public class Tests extends BaseTests {
 
     @Description("Проверка авторизации")
     @ParameterizedTest
-    @ValueSource(strings = {"chrome", "firefox", "opera", "edge"})
+    @ValueSource(strings = {"chrome", "firefox"})
     void authorization(String browser) {
         login(browser);
         $(By.linkText(ORGANIZATION_STRUCTURE_LINK_TEXT))

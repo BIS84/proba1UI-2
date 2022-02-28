@@ -12,9 +12,6 @@ import static common.Values.*;
 
 public class BaseTests {
 
-
-//comment
-
     @Step("Авторизация")
     public void login(String browser) {
         Configuration.browser =  browser;
