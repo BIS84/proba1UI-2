@@ -41,10 +41,7 @@ public class PositiveDeleteTests extends Steps {
     @AfterEach
     protected void tearDown() {
         cleanDB();
-    }
-
-    @AfterAll
-    protected static void cleanFile() {
         cleanFileIdForDelete();
     }
+
 }

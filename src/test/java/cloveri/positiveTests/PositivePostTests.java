@@ -2,11 +2,8 @@ package cloveri.positiveTests;
 
 import cloveri.base.Steps;
 import io.qameta.allure.Description;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
 
 public class PositivePostTests extends Steps {
 
@@ -102,10 +99,6 @@ public class PositivePostTests extends Steps {
     @AfterEach
     protected void tearDown() {
         cleanDB();
-    }
-
-    @AfterAll
-    protected static void cleanFile() {
         cleanFileIdForDelete();
     }
 
