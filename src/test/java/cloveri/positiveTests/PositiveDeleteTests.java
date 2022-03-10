@@ -1,16 +1,13 @@
 package cloveri.positiveTests;
 
 import cloveri.base.Steps;
-import io.qameta.allure.Description;
-import io.restassured.RestAssured;
-import org.hamcrest.CoreMatchers;
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 
 public class PositiveDeleteTests extends Steps {
 
-/*    String idStr;
+    String idStr;
     String id;
 
     @Test
@@ -26,17 +23,18 @@ public class PositiveDeleteTests extends Steps {
 
         id = createElement("www.comp_post_request.com", 1, "Dep_1");
         id = createElement("www.comp_post_request.com", 1, "Dep_1");
-        Integer element_int_id_1_1 = new Integer(id);
-        id = createElement("www.comp_post_request.com", element_int_id_1_1, "Dep_2");
-        Integer element_int_id_1_1_1 = new Integer(id);
-        id = createElement("www.comp_post_request.com", element_int_id_1_1_1, "Dep_3");
-        Integer element_int_id_1_1_1_1 = new Integer(id);
-        id = createElement("www.comp_post_request.com", element_int_id_1_1_1_1, "Dep_4");
-        Integer element_int_id_1_1_1_1_1 = new Integer(id);
-        createElement("www.comp_post_request.com", element_int_id_1_1_1_1_1, "Dep_5");
-        deleteElement(element_int_id_1_1_1_1_1.toString());
-        deleteElement(element_int_id_1_1_1_1.toString());
-        deleteElement(element_int_id_1_1_1.toString());
+        Integer element_int_id_2 = new Integer(id);
+        id = createElement("www.comp_post_request.com", element_int_id_2, "Dep_2");
+        Integer element_int_id_3 = new Integer(id);
+        id = createElement("www.comp_post_request.com", element_int_id_3, "Dep_3");
+        Integer element_int_id_4 = new Integer(id);
+        id = createElement("www.comp_post_request.com", element_int_id_4, "Dep_4");
+        Integer element_int_id_5 = new Integer(id);
+        id = createElement("www.comp_post_request.com", element_int_id_5, "Dep_5");
+        Integer element_int_id_6 = new Integer(id);
+        deleteElement(element_int_id_6.toString());
+        deleteElement(element_int_id_5.toString());
+        deleteElement(element_int_id_4.toString());
 
     }
 
@@ -48,5 +46,5 @@ public class PositiveDeleteTests extends Steps {
     @AfterAll
     protected static void cleanFile() {
         cleanFileIdForDelete();
-    }*/
+    }
 }

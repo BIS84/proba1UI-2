@@ -2,13 +2,12 @@ package cloveri.positiveTests;
 
 import cloveri.base.Steps;
 import io.qameta.allure.Description;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 public class PositivePutTests extends Steps {
 
-    String id;
+/*    String id;
 
     @Test
     @Description("Изменить элемент")
@@ -35,9 +34,5 @@ public class PositivePutTests extends Steps {
         cleanDB();
         cleanFileIdForDelete();
     }
-
-//    @AfterAll
-//    protected static void cleanFile() {
-//        cleanFileIdForDelete();
-//    }
+    */
 }
