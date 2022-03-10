@@ -93,18 +93,7 @@ public class Steps extends BaseTest {
     @Step("Удалить элемент")
     protected void deleteElement( String numberOfElement) {
 
-        try {
-            given()
-                    .log()
-                    .ifValidationFails()
-                    .when()
-                    .delete(elements + "{numberOfElement}/", numberOfElement)
-                    .prettyPeek()
-                    .then()
-                    .statusCode(200);
-        } catch (Exception e) {
-            System.out.println("При удалении элемента с id: " + numberOfElement + " что-то пошло не так");
-        }
+        deleteElem(numberOfElement);
     }
 
 
@@ -233,7 +222,7 @@ public class Steps extends BaseTest {
             // считаем сначала первую строку
             String line = reader.readLine();
             while (line != null) {
-                deleteElement(line);
+                deleteElem(line);
                 // считываем остальные строки в цикле
                 line = reader.readLine();
             }
@@ -247,6 +236,21 @@ public class Steps extends BaseTest {
         id = sortRevers(id);
         writerFileIdForDelete(id);
         return id;
+    }
+
+    protected void deleteElem(String idOfElement) {
+        try {
+            given()
+                    .log()
+                    .ifValidationFails()
+                    .when()
+                    .delete(elements + "{numberOfElement}/", idOfElement)
+                    .prettyPeek()
+                    .then()
+                    .statusCode(200);
+        } catch (Exception e) {
+            System.out.println("При удалении элемента с id: " + idOfElement + " что-то пошло не так");
+        }
     }
 
 }
