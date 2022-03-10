@@ -3,12 +3,18 @@ package cloveri.positiveTests;
 import cloveri.base.Steps;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class PositiveDeleteTests extends Steps {
 
     String idStr;
     String id;
+
+    @BeforeEach
+    void cleanFile() {
+        cleanFileIdForDelete();
+    }
 
     @Test
     void deleteOneElement() {
