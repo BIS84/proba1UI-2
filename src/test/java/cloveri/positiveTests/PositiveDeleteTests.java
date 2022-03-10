@@ -19,8 +19,6 @@ public class PositiveDeleteTests extends Steps {
     @Test
     void deleteOneElement() {
         id = createElement("www.comp_post_request.com", 1, "Dep_1");
-        idStr = getStructure();
-        assert idStr.contains(id);
         deleteElement(id);
     }
 
