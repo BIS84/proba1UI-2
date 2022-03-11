@@ -18,8 +18,11 @@ public class PositiveDeleteTests extends Steps {
 
     @Test
     void deleteOneElement() {
+        createElement("www.comp_post_request.com", 1, "Dep_1");
         id = createElement("www.comp_post_request.com", 1, "Dep_1");
         deleteElement(id);
+        id = getStructure();
+
     }
 
     @Test
@@ -39,6 +42,7 @@ public class PositiveDeleteTests extends Steps {
         deleteElement(element_int_id_6.toString());
         deleteElement(element_int_id_5.toString());
         deleteElement(element_int_id_4.toString());
+        id = getStructure();
 
     }
 

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 public class PositivePutTests extends Steps {
 
-/*    String id;
+    String id;
 
     @Test
     @Description("Изменить элемент")
@@ -34,5 +34,5 @@ public class PositivePutTests extends Steps {
         cleanDB();
         cleanFileIdForDelete();
     }
-    */
+
 }

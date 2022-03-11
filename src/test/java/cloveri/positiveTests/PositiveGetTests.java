@@ -11,6 +11,11 @@ public class PositiveGetTests extends Steps {
     String id2;
 
     @Test
+    void getOnlyGet() {
+        getStructure();
+    }
+
+    @Test
     void getPositiveTestLevel_1() {
 
         id1 = createElement("www.comp_post_request.com", 1, "Dep_1");

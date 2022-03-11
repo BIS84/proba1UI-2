@@ -183,6 +183,7 @@ public class Steps extends BaseTest {
         for (String browser : subStr) {
             id = id + browser + "\n";
         }
+
         return id;
     }
 
@@ -221,13 +222,13 @@ public class Steps extends BaseTest {
             BufferedReader reader = new BufferedReader(fr);
             // считаем сначала первую строку
             String line = reader.readLine();
-            while (line != null) {
-                deleteElem(line);
-                // считываем остальные строки в цикле
-                line = reader.readLine();
-            }
+                while (line != null) {
+                    deleteElem(line);
+                    // считываем остальные строки в цикле
+                    line = reader.readLine();
+                }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Нет элементов для удаления из БД");
         }
     }
 
