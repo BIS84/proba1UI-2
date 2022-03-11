@@ -33,7 +33,7 @@ public class Tests extends BaseTests {
     void createDepartmentsLevel_1(String browser) {
         login(browser);
         createDepartmentLevels_1_5();
-        createDepartmentLevel_N("0");
+        createDepartmentLevel_N(0);
 //        wait_2_sec();
         shouldInput();
     }
@@ -44,7 +44,7 @@ public class Tests extends BaseTests {
     void createDepartmentsLevel_5(String browser) {
         login(browser);
         createDepartmentLevels_1_5();
-        createDepartmentLevel_N("4");
+        createDepartmentLevel_N(4);
 //        wait_2_sec();
         shouldInput();
     }
@@ -55,7 +55,7 @@ public class Tests extends BaseTests {
     void createDepartmentsLevel_2(String browser) {
         login(browser);
         createDepartmentLevels_1_5();
-        createDepartmentLevel_N("1");
+        createDepartmentLevel_N(1);
 //        wait_2_sec();
         shouldInput();
     }
@@ -66,9 +66,9 @@ public class Tests extends BaseTests {
     void createDepartmentLevel_1(String browser) {
         login(browser);
         createDepartmentLevels_1_5();
-        createDepartmentLevel_N("1");
-        createDepartmentLevel_N("6");
-        createDepartmentLevel_N("11");
+        createDepartmentLevel_N(1);
+        createDepartmentLevel_N(6);
+        createDepartmentLevel_N(11);
 //        wait_2_sec();
 //        shouldInput();
         shouldInputFailed();

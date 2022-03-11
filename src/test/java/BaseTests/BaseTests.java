@@ -36,26 +36,34 @@ public class BaseTests {
 
     public void createDepartment(String number) {
 
-        $(By.xpath("//*[@data-id=" + number + "]/div/button")).click();
+        $(By.xpath("//*[@data-id=" + number + "]/div/div[3]/button")).click();
+        $(By.linkText("элемент структуры")).click();
+    }
+
+    public void createDepartmentFirstInLevel(String number) {
+
+        $(By.xpath("//*[@data-id=" + number + "]/div/div[2]/button")).click();
         $(By.linkText("элемент структуры")).click();
     }
 
     @Step("Создать департаменты уровней 1 - 5")
     public void createDepartmentLevels_1_5() {
-        createDepartment("0");
-        createDepartment("1");
-        createDepartment("2");
-        createDepartment("3");
-        createDepartment("4");
+        createDepartmentFirstInLevel("0");
+        createDepartmentFirstInLevel("1");
+        createDepartmentFirstInLevel("2");
+        createDepartmentFirstInLevel("3");
+        createDepartmentFirstInLevel("4");
     }
 
     @Step("Создать департаменты уровня N")
-    public void createDepartmentLevel_N(String level) {
-        createDepartment(level);
-        createDepartment(level);
-        createDepartment(level);
-        createDepartment(level);
-        createDepartment(level);
+    public void createDepartmentLevel_N(Integer level) {
+        Integer element6 = level + 1;
+        String el6 = "\"" + element6.toString() + "\"";
+        createDepartment(el6);
+        createDepartment("6");
+        createDepartment("7");
+        createDepartment("8");
+        createDepartment("9");
     }
 
     @Step("Подождать 2 сек")
@@ -65,12 +73,12 @@ public class BaseTests {
 
     @Step("Проверить значение поля 'input'")
     public void shouldInput() {
-        $(By.xpath("//*[@data-id=" + 3 + "]/div/div/div/input")).should(Condition.value("Управление 1"));
+        $(By.xpath("//*[@data-id=" + 1 + "]/div/div/input")).should(Condition.value("Управление 1"));
     }
 
     @Step("Проверить неверное значение поля 'input'")
     public void shouldInputFailed() {
-        $(By.xpath("//*[@data-id=" + 3 + "]/div/div/div/input")).should(Condition.value("Управление 2"));
+        $(By.xpath("//*[@data-id=" + 1 + "]/div/div/input")).should(Condition.value("Управление 2"));
     }
 
     @AfterEach
