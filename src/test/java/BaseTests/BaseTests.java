@@ -57,8 +57,8 @@ public class BaseTests {
 
     @Step("Создать департаменты уровня N")
     public void createDepartmentLevel_N(Integer level) {
-        Integer element6 = level + 1;
-        String el6 = "\"" + element6.toString() + "\"";
+        int element6 = level + 1;
+        String el6 = "\"" + element6 + "\"";
         createDepartment(el6);
         createDepartment("6");
         createDepartment("7");
