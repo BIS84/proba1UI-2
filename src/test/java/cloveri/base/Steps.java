@@ -8,7 +8,6 @@ import java.util.Collections;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class Steps extends BaseTest {
 
@@ -29,10 +28,10 @@ public class Steps extends BaseTest {
                 .response()
                 .jsonPath()
                 .getString("id");
-//        id = delChars(id);
-//        id = sortRevers(id);
-//        writerFileIdForDelete(id);
-        id = rewriterCsvFile(id);
+        id = delChars(id);
+        id = sortRevers(id);
+        writerFileIdForDelete(id);
+//        id = rewriterCsvFile(id);
 
         return id;
 
@@ -62,7 +61,6 @@ public class Steps extends BaseTest {
                 .prettyPeek()
                 .jsonPath()
                 .get("id");
-
         return id;
 
     }
@@ -100,8 +98,8 @@ public class Steps extends BaseTest {
     //----------------------//
     /** Негативные шаги **/
 
-    @Step ("Создать элемент. В запросе есть поле 'children'")
-    protected void createElementChildren(String href, Integer parent_id, String label) {
+    @Step ("Создать элемент. В запросе есть лишнее поле")
+    protected void createElementWithExtraField(String href, Integer parent_id, String label, String field, String fieldName) {
 
         String id = given()
                 .header("Content-Type", "application/json")
@@ -111,12 +109,15 @@ public class Steps extends BaseTest {
                         "    {   \"href\": \"" + href + "\",\r\n" +
                         "        \"parent_id\": \"" + parent_id.toString() + "\",\r\n" +
                         "        \"label\": \"" + label + "\",\r\n" +
-                        "        \"children\": [0]\r\n" +
+                        "        \"field + \": " + fieldName + "\r\n" +
                         "            \r\n" +
                         "    }    \r\n" +
                         "}  ")
                 .expect()
                 .statusCode(200)
+                .body("href", equalTo(href))
+                .body("parent_id", equalTo(parent_id.toString()))
+                .body("label", equalTo(label))
                 .when()
                 .post(elements)
                 .prettyPeek()
@@ -125,9 +126,119 @@ public class Steps extends BaseTest {
 
     }
 
+    @Step ("Создать элемент. В запросе нет поля 'href'")
+    protected void createElementWithoutHref(Integer parent_id, String label) {
+
+        String id = given()
+                .header("Content-Type", "application/json")
+                .log()
+                .ifValidationFails()
+                .body("{\"element\":\r\n" +
+                        "    {   \"parent_id\": \"" + parent_id.toString() + "\",\r\n" +
+                        "        \"label\": \"" + label + "\",\r\n" +
+                        "            \r\n" +
+                        "    }    \r\n" +
+                        "}  ")
+                .expect()
+                .statusCode(400)
+                .when()
+                .post(elements)
+                .prettyPeek()
+                .jsonPath()
+                .get("id");
+
+    }
+
+    @Step ("Создать элемент. В запросе нет поля 'parent_id'")
+    protected void createElementWithoutParentId(String href, String label) {
+
+        String id = given()
+                .header("Content-Type", "application/json")
+                .log()
+                .ifValidationFails()
+                .body("{\"element\":\r\n" +
+                        "    {   \"href\": \"" + href + "\",\r\n" +
+                        "        \"label\": \"" + label + "\",\r\n" +
+                        "            \r\n" +
+                        "    }    \r\n" +
+                        "}  ")
+                .expect()
+                .statusCode(400)
+                .when()
+                .post(elements)
+                .prettyPeek()
+                .jsonPath()
+                .get("id");
+
+    }
+
+    @Step ("Создать элемент. В запросе нет поля 'label'")
+    protected void createElementWithoutLabel(String href, Integer parent_id) {
+
+        String id = given()
+                .header("Content-Type", "application/json")
+                .log()
+                .ifValidationFails()
+                .body("{\"element\":\r\n" +
+                        "    {     \"href\": \"" + href + "\",\r\n" +
+                        "          \"parent_id\": \"" + parent_id.toString() + "\",\r\n" +
+                        "            \r\n" +
+                        "    }    \r\n" +
+                        "}  ")
+                .expect()
+                .statusCode(400)
+                .when()
+                .post(elements)
+                .prettyPeek()
+                .jsonPath()
+                .get("id");
+
+    }
+
+    @Step ("Создать элемент с несуществующим родителем")
+    protected String createElementWithNonExistentParent(String href, Integer parent_id, String label) {
+
+        String id = given()
+                .header("Content-Type", "application/json")
+                .log()
+                .ifValidationFails()
+                .body("{\"element\":\r\n" +
+                        "    {   \"href\": \"" + href + "\",\r\n" +
+                        "        \"parent_id\": \"" + parent_id.toString() + "\",\r\n" +
+                        "        \"label\": \"" + label + "\"\r\n" +
+                        "            \r\n" +
+                        "    }    \r\n" +
+                        "}  ")
+                .expect()
+                .statusCode(400)
+                .body("parent_id[0]", equalTo("Invalid pk \"" + parent_id + "\" - object does not exist."))
+                .when()
+                .post(elements)
+                .prettyPeek()
+                .jsonPath()
+                .get("id");
+
+        return id;
+
+    }
+
+    @Step ("Создать элемент. В запросе нет поля 'label'")
+    protected void createElementWithoutFields() {
+
+        given()
+                .header("Content-Type", "application/json")
+                .log()
+                .ifValidationFails()
+                .when()
+                .post(elements)
+                .then()
+                .statusCode(500);
+
+    }
+
     @Step("Изменить элемент. В запросе есть поле 'children'")
     protected void putElementChildren(String href, Integer parent_id, String label, String children, Integer numberOfElement) {
-        String id = given()
+        given()
                 .header("Content-Type", "application/json")
                 .log()
                 .ifValidationFails()
@@ -148,8 +259,35 @@ public class Steps extends BaseTest {
                 .get("id");
     }
 
+    @Step ("Создать элемент")
+    protected void createElement6(String href, Integer parent_id, String label) {
+
+        given()
+                .header("Content-Type", "application/json")
+                .log()
+                .ifValidationFails()
+                .body("{\"element\":\r\n" +
+                        "    {   \"href\": \"" + href + "\",\r\n" +
+                        "        \"parent_id\": \"" + parent_id.toString() + "\",\r\n" +
+                        "        \"label\": \"" + label + "\"\r\n" +
+                        "            \r\n" +
+                        "    }    \r\n" +
+                        "}  ")
+                .when()
+                .post(elements)
+                .then()
+                .statusCode(400);
+
+    }
+
+    @Step("Удалить элемент с id = 1")
+    protected void deleteElement_1() {
+
+        deleteElem_1();
+    }
+
     /** Функции **/
-    // Удаление лишних символов из строки с id для удаления
+    // Удаление лишних символов из строки с id для удаления элементов
     protected String delChars (String s) {
         String id;
         try {
@@ -207,8 +345,8 @@ public class Steps extends BaseTest {
             FileWriter fstream1 = new FileWriter("src/test/resources/idForDelete.csv");// конструктор с одним параметром - для перезаписи
             BufferedWriter out1 = new BufferedWriter(fstream1); //  создаём буферезированный поток
             out1.write(id); // перезаписываем файл
-            out1.close(); // закрываем
-        } catch (Exception e) {
+            out1.close();  // закрываем
+        } catch (IOException e) {
             System.err.println("Error in file cleaning: " + e.getMessage());
         }
     }
@@ -222,11 +360,13 @@ public class Steps extends BaseTest {
             BufferedReader reader = new BufferedReader(fr);
             // считаем сначала первую строку
             String line = reader.readLine();
+            if(line != null && line != "" && line != "\n") {
                 while (line != null) {
                     deleteElem(line);
                     // считываем остальные строки в цикле
                     line = reader.readLine();
                 }
+            }
         } catch (IOException e) {
             System.out.println("Нет элементов для удаления из БД");
         }
@@ -234,24 +374,44 @@ public class Steps extends BaseTest {
 
     protected String rewriterCsvFile(String id) {
         id = delChars(id);
+        System.out.println("Привет 1 " + id);
         id = sortRevers(id);
+        System.out.println("Привет 2 " + id);
         writerFileIdForDelete(id);
+        System.out.println("Привет 3 " + id);
         return id;
     }
 
     protected void deleteElem(String idOfElement) {
-        try {
-            given()
-                    .log()
-                    .ifValidationFails()
-                    .when()
-                    .delete(elements + "{numberOfElement}/", idOfElement)
-                    .prettyPeek()
-                    .then()
-                    .statusCode(200);
-        } catch (Exception e) {
-            System.out.println("При удалении элемента с id: " + idOfElement + " что-то пошло не так");
+        if(idOfElement != null && idOfElement != "" && idOfElement != " ") {
+            try {
+                given()
+                        .log()
+                        .ifValidationFails()
+                        .when()
+                        .delete(elements + "{numberOfElement}/", idOfElement)
+                        .prettyPeek()
+                        .then()
+                        .statusCode(200);
+            } catch (NullPointerException e) {
+                System.out.println("При удалении элемента с id: " + idOfElement + " что-то пошло не так");
+            }
+        } else {
+            System.out.println("Нет элементов для удаления");
         }
+    }
+
+    protected void deleteElem_1() {
+
+                given()
+                        .log()
+                        .ifValidationFails()
+                        .when()
+                        .delete(elements + "1/")
+                        .prettyPeek()
+                        .then()
+                        .statusCode(500);
+
     }
 
 }
