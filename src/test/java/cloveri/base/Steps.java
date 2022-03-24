@@ -46,7 +46,7 @@ public class Steps extends BaseTest {
                 .ifValidationFails()
                 .body("{\"element\":\r\n" +
                         "    {   \"href\": \"" + href + "\",\r\n" +
-                        "        \"parent_id\": \"" + parent_id.toString() + "\",\r\n" +
+                        "        \"parent_id\": " + parent_id.toString() + ",\r\n" +
                         "        \"label\": \"" + label + "\"\r\n" +
                         "            \r\n" +
                         "    }    \r\n" +
@@ -74,7 +74,7 @@ public class Steps extends BaseTest {
                 .ifValidationFails()
                 .body("{\"element\":\r\n" +
                         "    {   \"href\": \"" + href + "\",\r\n" +
-                        "        \"parent_id\": \"" + parent_id + "\",\r\n" +
+                        "        \"parent_id\": " + parent_id + ",\r\n" +
                         "        \"label\": \"" + label + "\"\r\n" +
                         "            \r\n" +
                         "    }    \r\n" +
@@ -107,7 +107,7 @@ public class Steps extends BaseTest {
                 .ifValidationFails()
                 .body("{\"element\":\r\n" +
                         "    {   \"href\": \"" + href + "\",\r\n" +
-                        "        \"parent_id\": \"" + parent_id.toString() + "\",\r\n" +
+                        "        \"parent_id\": " + parent_id.toString() + ",\r\n" +
                         "        \"label\": \"" + label + "\",\r\n" +
                         "        \"field + \": " + fieldName + "\r\n" +
                         "            \r\n" +
@@ -196,28 +196,52 @@ public class Steps extends BaseTest {
     }
 
     @Step ("Создать элемент с несуществующим родителем")
-    protected String createElementWithNonExistentParent(String href, Integer parent_id, String label) {
+    protected void createElementWithNonExistentParent(String href, Integer parent_id, String label) {
+        String str = "Элемент с таким родительским id'{}' не существует";
+        given()
+                .header("Content-Type", "application/json")
+                .log()
+                .ifValidationFails()
+                .body("{\"element\":\r\n" +
+                        "    {   \"href\": \"" + href + "\",\r\n" +
+                        "        \"parent_id\": " + parent_id + ",\r\n" +
+                        "        \"label\": \"" + label + "\"\r\n" +
+                        "            \r\n" +
+                        "    }    \r\n" +
+                        "}  ")
+                .expect()
+                .statusCode(200)
+//                .body("[0]", equalTo(str))
+                .when()
+                .post(elements)
+                .prettyPeek()
+                .jsonPath()
+                .get("[0]");
 
+    }
+
+    @Step ("Создать элемент с родителем 'null'")
+    protected String createElementWithParentNull(String href, Integer parent_id, String label) {
+        String str = "Parent_id должен иметь тип данных int и быть больше 0";
         String id = given()
                 .header("Content-Type", "application/json")
                 .log()
                 .ifValidationFails()
                 .body("{\"element\":\r\n" +
                         "    {   \"href\": \"" + href + "\",\r\n" +
-                        "        \"parent_id\": \"" + parent_id.toString() + "\",\r\n" +
+                        "        \"parent_id\": " + parent_id + ",\r\n" +
                         "        \"label\": \"" + label + "\"\r\n" +
                         "            \r\n" +
                         "    }    \r\n" +
                         "}  ")
                 .expect()
-                .statusCode(400)
-                .body("parent_id[0]", equalTo("Invalid pk \"" + parent_id + "\" - object does not exist."))
+                .statusCode(200)
+                .body("[0]", equalTo(str))
                 .when()
                 .post(elements)
                 .prettyPeek()
                 .jsonPath()
-                .get("id");
-
+                .get("[0]");
         return id;
 
     }
@@ -284,6 +308,240 @@ public class Steps extends BaseTest {
     protected void deleteElement_1() {
 
         deleteElem_1();
+    }
+
+    @Step("Изменить поле 'href' у элемента с 'id' = 1")
+    protected void changeElementWithId_1_Href(String href) {
+                    String str = "Элемент с id'1' успешно изменен";
+            given()
+                    .header("Content-Type", "application/json")
+                    .log()
+                    .ifValidationFails()
+                    .body("{\"element\":\r\n" +
+                            "    {   \"href\": \"" + href + "\",\r\n" +
+                            "        \"parent_id\": \"" + 1 + "\",\r\n" +
+                            "        \"label\": \"" + "\"Company\"" + "\"\r\n" +
+                            "            \r\n" +
+                            "    }    \r\n" +
+                            "}  ")
+                    .expect()
+                    .statusCode(200)
+                    .body("[0]", equalTo(str))
+                    .when()
+                    .put(elements + "1/")
+                    .prettyPeek()
+                    .jsonPath();
+
+    }
+
+    @Step("Изменить поле 'label' у элемента с 'id' = 1")
+    protected void changeElementWithId_1_Label(String label) {
+        String str = "Элемент с id'1' успешно изменен";
+        given()
+                .header("Content-Type", "application/json")
+                .log()
+                .ifValidationFails()
+                .body("{\"element\":\r\n" +
+                        "    {   \"href\": \"" + "\"www.company.com\"" + "\",\r\n" +
+                        "        \"parent_id\": \"" + 1 + "\",\r\n" +
+                        "        \"label\": \"" + label + "\"\r\n" +
+                        "            \r\n" +
+                        "    }    \r\n" +
+                        "}  ")
+                .expect()
+                .statusCode(200)
+                .body("[0]", equalTo(str))
+                .when()
+                .put(elements + "1/")
+                .prettyPeek()
+                .jsonPath();
+    }
+
+    @Step("Добавить потомка при их отсутствии")
+    protected void changeChildren(Integer id, Integer child_id) {
+
+        given()
+                .header("Content-Type", "application/json")
+                .log()
+                .ifValidationFails()
+                .body("{\"element\":\r\n" +
+                        "    {   \"href\": \"" + "\"www.comp_post_request.com\"" + "\",\r\n" +
+                        "        \"parent_id\": \"" + 1 + "\",\r\n" +
+                        "        \"label\": \"" + "\"Dep_2\"" + "\"\r\n" +
+                        "            \r\n" +
+                        "    }    \r\n" +
+                        "}  ")
+                .expect()
+                .statusCode(400)
+                .when()
+                .put(elements + "1/")
+                .prettyPeek()
+                .jsonPath();
+    }
+
+    @Step("Проверить, что не появилась лишняя запись в поле 'children'")
+    protected void checkFieldChildren(Integer element_int_id_3) {
+        String children = given()
+                .log()
+                .ifValidationFails()
+                .expect()
+                .statusCode(200)
+                .body("[1].children[0]", equalTo( element_int_id_3.toString()))
+                .when()
+                .get(elements)
+                .prettyPeek()
+                .then()
+                .extract()
+                .response()
+                .jsonPath()
+                .getString("[1].children[0]");
+        System.out.println("Это children " + children);
+    }
+
+    @Step("Изменить родителя у элемента с 'id' = 1")
+    protected void changeElementWithId_1_Parent(String href, Integer parent_id, String label, Integer id) {
+
+        given()
+                .header("Content-Type", "application/json")
+                .log()
+                .ifValidationFails()
+                .body("{\"element\":\r\n" +
+                        "    {   \"href\": \"" + href + "\",\r\n" +
+                        "        \"parent_id\": \"" + parent_id + "\",\r\n" +
+                        "        \"label\": \"" + label + "\"\r\n" +
+                        "            \r\n" +
+                        "    }    \r\n" +
+                        "}  ")
+                .expect()
+                .statusCode(500)
+                .when()
+                .put(elements + "{id}/", id)
+                .prettyPeek()
+                .jsonPath();
+    }
+
+    @Step("Изменить родителя на несуществующего")
+    protected void changeElementParentNoExist(String href, Integer parent_id, String label, Integer id) {
+        String str = "Элемент с таким родительским id'{}' не существует";
+        given()
+                .header("Content-Type", "application/json")
+                .log()
+                .ifValidationFails()
+                .body("{\"element\":\r\n" +
+                        "    {   \"href\": \"" + href + "\",\r\n" +
+                        "        \"parent_id\": " + parent_id + ",\r\n" +
+                        "        \"label\": \"" + label + "\"\r\n" +
+                        "            \r\n" +
+                        "    }    \r\n" +
+                        "}  ")
+                .expect()
+                .statusCode(200)
+                .body("[0]", equalTo(str))
+                .when()
+                .put(elements + "{id}/", id)
+                .prettyPeek()
+                .jsonPath();
+    }
+
+    @Step("Изменить элемент без поля 'href'")
+    protected void changeElementNoFieldHref(Integer parent_id,String label, Integer id) {
+        given()
+                .header("Content-Type", "application/json")
+                .log()
+                .ifValidationFails()
+                .body("{\"element\":\r\n" +
+                        "     {   \"parent_id\": " + parent_id + ",\r\n" +
+                        "        \"label\": \"" + label + "\"\r\n" +
+                        "            \r\n" +
+                        "    }    \r\n" +
+                        "}  ")
+                .expect()
+                .statusCode(200)
+                .when()
+                .put(elements + "{id}/", id)
+                .prettyPeek()
+                .jsonPath();
+    }
+
+    @Step("Изменить элемент без поля 'parent_id'")
+    protected void changeElementNoFieldParent(String href, String label, Integer id) {
+        given()
+                .header("Content-Type", "application/json")
+                .log()
+                .ifValidationFails()
+                .body("{\"element\":\r\n" +
+                        "        \"href\": \"" + href + "\",\r\n" +
+                        "        \"label\": \"" + label + "\"\r\n" +
+                        "            \r\n" +
+                        "    }    \r\n" +
+                        "}  ")
+                .expect()
+                .statusCode(400)
+                .when()
+                .put(elements + "{id}/", id)
+                .prettyPeek()
+                .jsonPath();
+    }
+
+    @Step("Изменить элемент без поля 'label'")
+    protected void changeElementNoFieldLabel(String href, Integer parent_id, Integer id) {
+        String str = "Элемент с id'" + id + "' успешно изменен";
+        given()
+                .header("Content-Type", "application/json")
+                .log()
+                .ifValidationFails()
+                .body("{\"element\":\r\n" +
+                        "    {    \"href\": \"" + href + "\",\r\n" +
+                        "        \"parent_id\": " + parent_id + "\r\n" +
+                        "            \r\n" +
+                        "    }    \r\n" +
+                        "}  ")
+                .expect()
+                .statusCode(200)
+                .body("[0]", equalTo(str))
+                .when()
+                .put(elements + "{id}/", id)
+                .prettyPeek()
+                .jsonPath();
+    }
+
+    @Step("Изменить элемент. Пустой запрос.")
+    protected void changeElementNoFields(Integer id) {
+        String str = "JSON parse error - Expecting value: line 1 column 2 (char 1)";
+        given()
+                .header("Content-Type", "application/json")
+                .log()
+                .ifValidationFails()
+                .body("")
+                .expect()
+                .statusCode(500)
+                .when()
+                .put(elements + "{id}/", id)
+                .prettyPeek()
+                .jsonPath();
+    }
+
+    @Step("Изменить значение поля 'parent_id' на null")
+    protected void changeParentIdToNull(String href, String label, Integer id) {
+        String str = "Parent_id должен иметь тип данных int и быть больше 0";
+        given()
+                .header("Content-Type", "application/json")
+                .log()
+                .ifValidationFails()
+                .body("{\"element\":\r\n" +
+                        "    {   \"href\": \"" + href + "\",\r\n" +
+                        "        \"parent_id\": " + null + ",\r\n" +
+                        "        \"label\": \"" + label + "\"\r\n" +
+                        "            \r\n" +
+                        "    }    \r\n" +
+                        "}  ")
+                .expect()
+                .statusCode(200)
+                .body("[0]", equalTo(str))
+                .when()
+                .put(elements + "{id}/", id)
+                .prettyPeek()
+                .jsonPath();
     }
 
     /** Функции **/
@@ -374,11 +632,8 @@ public class Steps extends BaseTest {
 
     protected String rewriterCsvFile(String id) {
         id = delChars(id);
-        System.out.println("Привет 1 " + id);
         id = sortRevers(id);
-        System.out.println("Привет 2 " + id);
         writerFileIdForDelete(id);
-        System.out.println("Привет 3 " + id);
         return id;
     }
 
@@ -403,14 +658,16 @@ public class Steps extends BaseTest {
 
     protected void deleteElem_1() {
 
-                given()
-                        .log()
-                        .ifValidationFails()
-                        .when()
-                        .delete(elements + "1/")
-                        .prettyPeek()
-                        .then()
-                        .statusCode(500);
+        String str = "Элемент с id=1 нельзя удалить";
+        given()
+                .log()
+                .ifValidationFails()
+                .when()
+                .delete(elements + "1/")
+                .prettyPeek()
+                .then()
+                .statusCode(200)
+                .body("[0]", equalTo(str));
 
     }
 

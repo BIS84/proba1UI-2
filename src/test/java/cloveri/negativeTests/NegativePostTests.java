@@ -10,11 +10,10 @@ public class NegativePostTests extends Steps {
 
     String id;
 
-    @Disabled
     @Test
     @Description("Создать второй элемент с родителем 'null'")
     void postWithParentNull() {
-        createElement("www.comp_post_request.com", null, "Element with parent 'null'");
+        createElementWithParentNull("www.comp_post_request.com", null, "Element with parent 'null'");
         createElement("www.comp_post_request.com", 1, "Element control");
         id = getStructure();
 

@@ -1,8 +1,6 @@
 package cloveri.negativeTests;
 
-import io.restassured.RestAssured;
 import cloveri.base.Steps;
-import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
