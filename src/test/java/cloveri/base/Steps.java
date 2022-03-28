@@ -268,7 +268,7 @@ public class Steps extends BaseTest {
                 .ifValidationFails()
                 .body("{\"element\":\r\n" +
                         "    {   \"href\": \"" + href + "\",\r\n" +
-                        "        \"parent_id\": \"" + parent_id + "\",\r\n" +
+                        "        \"parent_id\": " + parent_id + ",\r\n" +
                         "        \"label\": \"" + label + "\",\r\n" +
                         "        \"children\": [\"" + children + "]\"\r\n" +
                         "            \r\n" +
@@ -319,7 +319,7 @@ public class Steps extends BaseTest {
                     .ifValidationFails()
                     .body("{\"element\":\r\n" +
                             "    {   \"href\": \"" + href + "\",\r\n" +
-                            "        \"parent_id\": \"" + 1 + "\",\r\n" +
+                            "        \"parent_id\": " + null + ",\r\n" +
                             "        \"label\": \"" + "\"Company\"" + "\"\r\n" +
                             "            \r\n" +
                             "    }    \r\n" +
@@ -407,7 +407,7 @@ public class Steps extends BaseTest {
                 .ifValidationFails()
                 .body("{\"element\":\r\n" +
                         "    {   \"href\": \"" + href + "\",\r\n" +
-                        "        \"parent_id\": \"" + parent_id + "\",\r\n" +
+                        "        \"parent_id\": " + parent_id + ",\r\n" +
                         "        \"label\": \"" + label + "\"\r\n" +
                         "            \r\n" +
                         "    }    \r\n" +

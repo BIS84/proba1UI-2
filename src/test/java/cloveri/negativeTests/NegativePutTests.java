@@ -33,13 +33,14 @@ public class NegativePutTests extends Steps {
         getStructure();
     }
 
-    @Disabled
     @Test
     @Description("Изменить родителя у элемента с 'id' = 1")
     void putChangeElementWithId_1_Parent() {
-        id = createElement("www.comp_post_request.com", 1, "Dep_1");
-        Integer element_int_id_2 = new Integer(id);
-        changeElementWithId_1_Parent("www.put_request.com", element_int_id_2, "Company", 1);
+        String id1 = createElement("www.comp_post_request.com", 1, "Dep_1");
+        Integer element_int_id_2 = new Integer(id1);
+        String id2 = createElement("www.comp_post_request.com", element_int_id_2, "Dep_1");
+        Integer element_int_id_3 = new Integer(id2);
+        changeElementWithId_1_Parent("www.put_request.com", element_int_id_3, "Company", 1);
         getStructure();
     }
 
