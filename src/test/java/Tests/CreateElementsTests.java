@@ -1,6 +1,7 @@
 package Tests;
 
 import baseTests.Steps;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.junit5.ScreenShooterExtension;
 import io.qameta.allure.Description;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -19,6 +20,7 @@ public class CreateElementsTests extends Steps {
 
         String id;
         id = createDepartmentLevels_1_5();
+        shouldInput(id, "department");
         deleteElement(id);
     }
 
@@ -28,7 +30,7 @@ public class CreateElementsTests extends Steps {
     void createDepartmentsLevel_1(String browser) {
         String id;
         id = createDepartmentLevel_N(1);
-        shouldInput(id, "Управление 1");
+        shouldInput(id, "department");
         deleteElement(id);
     }
 
@@ -38,7 +40,7 @@ public class CreateElementsTests extends Steps {
     void createDepartmentsLevel_5(String browser) {
         String id;
         id = createDepartmentLevel_N(5);
-        shouldInput(id, "Управление 1");
+        shouldInput(id, "department");
         deleteElement(id);
     }
 
@@ -48,7 +50,7 @@ public class CreateElementsTests extends Steps {
     void createDepartmentsLevel_2(String browser) {
         String id;
         id = createDepartmentLevel_N(3);
-        shouldInput(id, "Управление 1");
+        shouldInput(id, "department");
         deleteElement(id);
     }
 
@@ -61,16 +63,14 @@ public class CreateElementsTests extends Steps {
         createDepartmentLevel_N(1);
         createDepartmentLevel_N(6);
         createDepartmentLevel_N(11);
-//        wait_2_sec();
-//        shouldInput(id, "Управление 1");
-        shouldInputFailed(id, "Управление 1");
+        shouldInputFailed(id, "department1");
     }*/
 
     @Description("Проверка авторизации")
     @ParameterizedTest
     @ValueSource(strings = {"chrome", "firefox"})
     void authorization(String browser) {
-
+        Selenide.sleep(200);
         shouldInputId_1("1", "Company");
     }
 

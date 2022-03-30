@@ -16,23 +16,17 @@ public class DeleteElementsTests extends Steps {
     void deleteOneElement(String browser) {
         String id;
         id = createDepartmentOne("1");
+        System.out.println("id = " + id);
         deleteElement(id);
+        int n = $$(By.xpath("//*[@class=\"react-flow__node react-flow__node-special selectable\"]")).size();
+        System.out.println("n = " + n);
+        assert n == 1;
     }
 
     @Description("Проверка удаления элемента с потомками")
     @ParameterizedTest
     @ValueSource(strings = {"chrome", "firefox"})
     void deleteElementWithChildren(String browser) {
-        String id;
-        id = createDepartmentLevels_1_5();
-
-        deleteElement(id);
-    }
-
-    @Description("Проверка, что элементы удалились")
-    @ParameterizedTest
-    @ValueSource(strings = {"chrome", "firefox"})
-    void deleteSuccess(String browser) {
         String id;
         id = createDepartmentLevels_1_5();
         deleteElement(id);

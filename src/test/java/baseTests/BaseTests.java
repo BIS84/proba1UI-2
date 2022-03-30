@@ -58,7 +58,7 @@ public class BaseTests {
 
     public void deleteElementBase(String data_id) {
         try {
-            $(By.xpath("//*[@data-id=\"" + data_id + "\"]/div/div[1]/div[1]/div/div/button")).click();
+            $(By.xpath("//*[@data-id=\"" + data_id + "\"]/div/div[1]/form/div/div/button")).click();
             $(By.linkText("удалить элемент")).click();
             $(By.cssSelector(".button-delete:nth-child(1)")).click();
         } catch (Exception e) {
