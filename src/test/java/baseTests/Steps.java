@@ -11,17 +11,6 @@ import static common.Values.STRUCTURE_PAGE;
 
 public class Steps extends BaseTests {
 
-    @Step("Авторизация")
-    public void authorizationStep(String browser) {
-        login(browser);
-    }
-
-    @Step("Открыть ЛК")
-    public void openPage() {
-
-        open(BASE_URL + STRUCTURE_PAGE);
-    }
-
     @Step("Изменить размер")
     public static void changeZoom() {
         Selenide.zoom(0.5);

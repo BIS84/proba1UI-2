@@ -1,13 +1,9 @@
 package baseTests;
 
 import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
-
-import java.io.IOException;
 
 import static baseTests.Steps.changeZoom;
 import static com.codeborne.selenide.Configuration.browser;
@@ -16,20 +12,10 @@ import static common.Values.*;
 
 public class BaseTests {
 
-
-//    @BeforeAll
-//    @BeforeEach
-//    public void cleanDbBeforeAll() {
-//        login(browser);
-//        cleanDbBeforeStart();
-//        closeWebDriver();
-//
-//    }
-
     @BeforeEach
     public void loginBeforeEach() {
         login(browser);
-        sleep(2000);
+        sleep(200);
         cleanDbBeforeStart();
 
     }
@@ -73,24 +59,17 @@ public class BaseTests {
         $(By.xpath("//*[@data-id=\"1\"]")).click();
         int strSize2;
         strSize2 = $$(By.xpath("//*[@class=\"react-flow__node react-flow__node-special selectable\"]")).size();
-        System.out.println("strSize = " + strSize2);
         String[] strArr = new String[strSize2];
 
         if(strSize2 > 1) {
             for (int i = 0; i < strSize2; i++) {
                 int k = i + 1;
                 strArr[i] = $(By.xpath("//*[@class=\"react-flow__node react-flow__node-special selectable\"][" + k + "]")).attr("data-id");
-                System.out.println("strArr[i]" + strArr[i]);
             }
-//            String str1 = strArr[3];
-//            String str2 = strArr[4];
-//            strArr[3] = str2;
-//            strArr[4] = str1;
             for (int i = strSize2 - 1; i >= 0; i--) {
                 String j = strArr[i];
                 if(j != "1") {
                     try {
-                        System.out.println(j);
                         deleteElementBase(j);
                     } catch (Exception e) {
                         System.out.println("Элемент уже удален");
@@ -99,56 +78,23 @@ public class BaseTests {
                 }
             }
         }
-
-//        int strSize;
-//        strSize = $$(By.xpath("//*[@class=\"react-flow__node react-flow__node-special selectable\"]")).size();
-//        System.out.println("strSizeEnd = " + strSize);
-//        String[] strArr = new String[strSize];
-//        String str1 = $(By.xpath("//*[@class=\"react-flow__node react-flow__node-special selected selectable\"]")).attr("data-id");
-
-//        if(strSize > 1) {
-//            if(strSize > 2) {
-//                for (int i = 0; i < strSize; i++) {
-//                    int k = i + 1;
-//                    strArr[i] = $(By.xpath("//*[@class=\"react-flow__node react-flow__node-special selectable\"][" + k + "]")).attr("data-id");
-//                    System.out.println(strArr[i]);
-//                }
-//                for (int i = strSize - 1; i >= 1; i--) {
-//                    String j = strArr[i];
-//                    if(j != "1") {
-//                        try {
-//                            System.out.println(j);
-//                            deleteElementBase(j);
-//                        } catch (Exception e) {
-//                            System.out.println("Элемент уже удален");
-//                        }
-//                    }
-//                }
-//            }
-//
-//            deleteElementBase(str1);
-//
-//        }
     }
 
     public void cleanDbBeforeStart() {
 
         int strSize2;
         strSize2 = $$(By.xpath("//*[@class=\"react-flow__node react-flow__node-special selectable\"]")).size();
-        System.out.println("strSize = " + strSize2);
         String[] strArr = new String[strSize2];
 
         if(strSize2 > 1) {
             for (int i = 0; i < strSize2; i++) {
                 int k = i + 1;
                 strArr[i] = $(By.xpath("//*[@class=\"react-flow__node react-flow__node-special selectable\"][" + k + "]")).attr("data-id");
-                System.out.println("strArr[i]" + strArr[i]);
             }
             for (int i = strSize2 - 1; i >= 1; i--) {
                 String j = strArr[i];
                 if(j != "1") {
                     try {
-                        System.out.println(j);
                         deleteElementBase(j);
                     } catch (Exception e) {
                         System.out.println("Элемент уже удален");
